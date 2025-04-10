@@ -78,8 +78,11 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
     dplyr::inner_join(., geo_labels, by = dplyr::join_by(DIM == code)) %>%
     dplyr::select(-DIM) %>%
     dplyr::mutate(DIM = label) %>%
-    dplyr::mutate(date = dplyr::case_when(FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), #to better fit y scale with quarterly dates
-                                          TRUE ~ date))
+    dplyr::mutate(date = dplyr::case_when(
+      FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), # adjust quarterly for display
+      FREQ == "M" ~ date,
+      FREQ == "A" ~ date,
+      TRUE ~ date
 
   # Factorize the DIM column to keep the same order as the data
   filtered_geo_labels <- intersect(geo_labels$label, unique(data_filtered$DIM))
@@ -163,8 +166,11 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
 
       xaxis = list(
         title = FALSE,
-        tickformat = ifelse(data_filtered[1, "FREQ"] == "Q", "Q%q-%Y",
-                            ifelse(data_filtered[1, "FREQ"] == "M", "%b-%Y", "%Y")),
+        tickformat = switch(data_filtered[1, "FREQ"],
+                            "Q" = "Q%q-%Y",
+                            "M" = "%b-%Y",
+                            "A" = "%Y",
+                            "%Y"),
         rangeslider = list(bgcolor="#F5F5F5",  type = "date",
                            yaxis = list(range=list(NULL,NULL), rangemode="fixed"))
       )
@@ -183,7 +189,11 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
 
       xaxis = list(
         title = FALSE,
-        tickformat = ifelse(data_filtered[1, "FREQ"] == "Q", "Q%q-%Y", ifelse(data_filtered[1, "FREQ"] == "M", "%b-%Y", "%Y"))
+        tickformat = switch(data_filtered[1, "FREQ"],
+                            "Q" = "Q%q-%Y",
+                            "M" = "%b-%Y",
+                            "A" = "%Y",
+                            "%Y"),
       )
     ) %>%
     plotly::style(legendgroup = NULL)

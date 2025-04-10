@@ -139,7 +139,7 @@ menu_categories <- function() {
   scenario <- read_user_config_param("scenario")
   if (!is.null(scenario) && scenario == "nsi") {
     return(c("Economic situation", "Prices outlook", "Foreign trade",
-             "Labour market outlook"))
+             "Labour market outlook", "Human Development Index"))
   }
   return(c("Economy", "Business and Trade", "Labour market",
            "Cyclical indicators", "Trend-cycle estimates", "Forecasts"))
