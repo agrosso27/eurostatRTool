@@ -17,7 +17,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup}
-library(eurostatRTool)
+library(eurostatRToolCustom)
 ```
 
 Two different demonstration dashboards are available, containing different structure, indicators, visualisation elements and interpretations, but both built from public data published in December 2023. 

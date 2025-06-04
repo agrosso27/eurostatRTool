@@ -17,7 +17,7 @@ round_half_up <- function(x, digits=0) {
 update_user_config_file <- function(config_list) {
 
   # Get the user project config directory
-  user_config_path <- tools::R_user_dir("eurostatRTool", which = "config")
+  user_config_path <- tools::R_user_dir("eurostatRToolCustom", which = "config")
   if (!dir.exists(user_config_path)) {
     dir.create(user_config_path, recursive=TRUE)
   }
@@ -44,7 +44,7 @@ update_user_config_file <- function(config_list) {
 read_user_config_param <- function(param) {
 
   # Get the user project config directory
-  user_config_path <- tools::R_user_dir("eurostatRTool", which = "config")
+  user_config_path <- tools::R_user_dir("eurostatRToolCustom", which = "config")
   if (!dir.exists(user_config_path)) {
     dir.create(user_config_path, recursive=TRUE)
   }

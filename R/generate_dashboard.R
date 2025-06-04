@@ -56,7 +56,7 @@ generate_dashboard <- function(output_path, pdf_reports = FALSE, menu_categories
 
     # Generate the dashboard
     rmarkdown::render(
-      input = file.path(system.file(package = "eurostatRTool"), "rmd", "visualisation.Rmd"),
+      input = file.path(system.file(package = "eurostatRToolCustom"), "rmd", "visualisation.Rmd"),
       output_file = file.path(output_path, "visualisation.html"),
       params = list(data = data,
                     geo_labels = geo_labels,

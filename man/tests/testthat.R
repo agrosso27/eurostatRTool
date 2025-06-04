@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(eurostatRTool)
+library(eurostatRToolCustom)
 
-test_check("eurostatRTool")
+test_check("eurostatRToolCustom")

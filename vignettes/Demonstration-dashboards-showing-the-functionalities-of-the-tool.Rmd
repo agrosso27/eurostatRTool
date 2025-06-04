@@ -17,7 +17,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup}
-library(eurostatRTool)
+library(eurostatRToolCustom)
 ```
 
 Two different demonstration dashboards are available, containing different structure, indicators, visualisation elements and interpretations, but both built from public data published in December 2023. 
@@ -43,10 +43,10 @@ knitr::include_graphics('img/eurostatistics-dashboard-example.png')
 ### NSI demonstration dashboard
 
 The sample version of the NSI scenario is built on public national data from Italy collected from [ISTAT website](https://www.istat.it/) in January 2024. To generate this sample dashboard, first we will have to call the `update_scenario("nsi")` function, passing the text `nsi` as parameter, allowing us to switch into the NSI scenario.  Additionally, you have to call the fallowing functions:
-* `update_data("library_path/eurostatRTool/extdata/data-italy.csv")`
-* `update_forecasts("library_path/eurostatRTool/extdata/forecasts-italy.xlsx")`
-* `update_dim_labels("library_path/eurostatRTool/extdata/dim-labels-italy.csv")`
-* `update_dashboard_structure("library_path/eurostatRTool/extdata\\dashboard-structure-italy.xlsx")`
+* `update_data("library_path/eurostatRToolCustom/extdata/data-italy.csv")`
+* `update_forecasts("library_path/eurostatRToolCustom/extdata/forecasts-italy.xlsx")`
+* `update_dim_labels("library_path/eurostatRToolCustom/extdata/dim-labels-italy.csv")`
+* `update_dashboard_structure("library_path/eurostatRToolCustom/extdata\\dashboard-structure-italy.xlsx")`
 
 where `library_path` is your folder with R packages, which you can find using `.libPaths()`.
 
@@ -59,7 +59,7 @@ knitr::include_graphics('img/italy-dashboard-example.png')
 
 Apart from the differences in the general layout and the different data and visualisation elements displayed for demonstration purposes, we can notice that both scenarios (Eurostatistics and NSI scenarios) differ in their main structure, having different topics in their respective main menus.
 
-While all other options -see the vignette `General-workflow-for-building-and-maintaining-your-dashboard` for a full description of the available functionalities- are customisable: colours, titles, headers, footer, logo, data, indicators, visualisation modes, etc., the topics structuring the main menu in the two scenarios are not customisable. 
+While all other options -see the vignette `General-workflow-for-building-and-maintaining-your-dashboard` for a full description of the available functionalities- are customisable: colours, titles, headers, footer, logo, data, indicators, visualisation modes, etc., the topics structuring the main menu can also be adjusted. Use `update_menu_categories()` to save your preferred categories or pass them on the fly via the `menu_categories_override` argument of `generate_dashboard()`.
 
 For the Eurostatistics dashboard, these topics include: Overview, Economy, Business and Trade, Labour Market, Cyclical Indicators, Trend-Cycle Estimates, and Forecasts. 
 

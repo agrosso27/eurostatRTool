@@ -17,7 +17,7 @@ update_social <- function(article_text = NULL, article_link = NULL,
     facebook_link = NULL, twitter_link = NULL, linkedin_link = NULL) {
 
   # Get the user project data directory
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   if (!dir.exists(user_data_path)) {
     dir.create(user_data_path, recursive=TRUE)
   }

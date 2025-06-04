@@ -1,13 +1,13 @@
 ---
 output: 
   flexdashboard::flex_dashboard:
-    css: !expr eurostatRTool::css()
+    css: !expr eurostatRToolCustom::css()
     orientation: rows
     vertical_layout: fill
-    logo: !expr eurostatRTool::logo()
+    logo: !expr eurostatRToolCustom::logo()
     includes:
-      in_header: !expr eurostatRTool::social()
-      after_body: !expr eurostatRTool::footer()
+      in_header: !expr eurostatRToolCustom::social()
+      after_body: !expr eurostatRToolCustom::footer()
     self_contained: false
     mathjax: null
     encoding: UTF-8

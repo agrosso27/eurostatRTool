@@ -18,7 +18,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup}
-library(eurostatRTool)
+library(eurostatRToolCustom)
 ```
 
 This document is a complete guide on how to build and maintain your own customised dashboard. Here you will discover all the functionalities and customisation options that the package offers to best adapt the final dashboard to your specific needs.
@@ -47,7 +47,7 @@ We strongly recommend creating both data.csv and `dim-labels.csv` files at the s
 
 To avoid errors in the data structure, the dashboard manager can rely on the sample data files that were used in the demonstration dashboards. These files can be used as templates to be edited and updated accordingly. 
 
-The sample files are available from the [GitHub page of the project](https://github.com/Randbee/eurostatRTool/), in the folder `inst` and within the later, in the `extdata` folder. 
+The sample files are available from the [GitHub page of the project](https://github.com/Randbee/eurostatRToolCustom/), in the folder `inst` and within the later, in the `extdata` folder. 
 
 The two files containing the data respectively used in the Eurostatistics and the NSI scenarios, are `data.csv` and `data-italy.csv`. Although they contain different data and indicators, both share the same structure. This data structure is the one that the dashboard manager must accurately follow to build his/her own data files.
 
@@ -121,7 +121,7 @@ An example of an indicator displayed using a double scale plot can be found in t
 knitr::include_graphics('img/double-scale.png')
 ```
 
-In principle, this double scale plot can be used to visualise any data series with different scale and not only decomposition results. However, as currently there is no specific function for this aim in the eurostatRTool package, in case the dashboard manager wants to change the labels in the filtering options he/she will have to modify this text directly in the source code.
+In principle, this double scale plot can be used to visualise any data series with different scale and not only decomposition results. However, as currently there is no specific function for this aim in the eurostatRToolCustom package, in case the dashboard manager wants to change the labels in the filtering options he/she will have to modify this text directly in the source code.
 
 #### Point_linechart plot
 
