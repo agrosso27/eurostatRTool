@@ -66,6 +66,18 @@ eurostatRTool::generate_dashboard("path/to/output/folder")
 
 <img src="man/figures/README-dashboard-example.png" width="100%" style="display: block; margin: auto;" />
 
+To temporarily replace the default categories shown in the menu, you can pass a
+`menu_categories_override` argument to `generate_dashboard()`. The argument
+expects a character vector with the menu names. Persistent changes should be
+made using `update_menu_categories()` before running the dashboard generation.
+
+``` r
+eurostatRTool::generate_dashboard(
+  "path/to/output/folder",
+  menu_categories_override = c("Economy", "Trade", "Employment")
+)
+```
+
 ## Further help and documentation
 
 For general help with the eurostatRTool package, you should consult the [Wiki pages for this project](https://github.com/eurostat/eurostatRTool/wiki) 
