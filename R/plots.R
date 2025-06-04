@@ -83,6 +83,7 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
       FREQ == "M" ~ date,
       FREQ == "A" ~ date,
       TRUE ~ date
+    )) %>%
 
   # Factorize the DIM column to keep the same order as the data
   filtered_geo_labels <- intersect(geo_labels$label, unique(data_filtered$DIM))
