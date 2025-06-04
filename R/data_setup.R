@@ -135,6 +135,12 @@ bar_chart_colors_palette <- function() {
 # @return A list.
 menu_categories <- function() {
 
+  # If menu categories are defined in the configuration file use them
+  cfg_categories <- read_user_config_param("menu_categories")
+  if (!is.null(cfg_categories)) {
+    return(cfg_categories)
+  }
+
   # Get the menu category, depending on the selected scenario
   scenario <- read_user_config_param("scenario")
   if (!is.null(scenario) && scenario == "nsi") {
