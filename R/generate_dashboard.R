@@ -4,10 +4,13 @@
 #'
 #' @param output_path The path where to save the html.
 #' @param pdf_reports Enable generation of pdf reports.
+#' @param menu_categories_override Optional vector of menu categories. If
+#'   \code{NULL}, categories are read from the configuration or selected
+#'   scenario.
 #' @returns A html.
 #' @import rmarkdown htmltools flexdashboard metathis
 #' @export
-generate_dashboard <- function(output_path, pdf_reports = FALSE) {
+generate_dashboard <- function(output_path, pdf_reports = FALSE, menu_categories_override = NULL) {
 
   # Assign the output_path to a global variable
   assign("output_path", output_path, envir=.pkgglobalenv)
@@ -16,7 +19,11 @@ generate_dashboard <- function(output_path, pdf_reports = FALSE) {
   data <- data()
   geo_labels <- geo_labels()
   forecast_data()
-  menu_categories <- menu_categories()
+  categories <- if (is.null(menu_categories_override)) {
+    menu_categories()
+  } else {
+    as.character(menu_categories_override)
+  }
   dashboard_structure_data <-
     dashboard_structure_data(unique(data$IND), unique(data$DIM))
   title <- title()
@@ -41,7 +48,7 @@ generate_dashboard <- function(output_path, pdf_reports = FALSE) {
     # If the option is enabled, generate the pdf reports for any indicator
     if (pdf_reports) {
       generate_pdf_reports(output_path, data, geo_labels, dashboard_structure_data,
-                           colors_palette, bar_chart_colors_palette, menu_categories)
+                           colors_palette, bar_chart_colors_palette, categories)
       pdf_reports <- TRUE
     } else {
       pdf_reports <- FALSE
@@ -53,7 +60,7 @@ generate_dashboard <- function(output_path, pdf_reports = FALSE) {
       output_file = file.path(output_path, "visualisation.html"),
       params = list(data = data,
                     geo_labels = geo_labels,
-                    menu_categories = menu_categories,
+                    menu_categories = categories,
                     dashboard_structure_data = dashboard_structure_data,
                     title = title,
                     edition = edition,
