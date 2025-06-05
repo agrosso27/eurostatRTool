@@ -744,11 +744,11 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
         list(
           label = "Hodrick-Prescott filter",
           method = "update",
-          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))), # Indicator and HP decomp. visible
+          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))) , # Indicator and HP decomp. visible
         list(
           label = "Christiano-Fitzgerald filter",
           method = "update",
-          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))), # Indicator and CF decomp. visible
+          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))) , # Indicator and CF decomp. visible
         list(
           label = "Unobserved components",
           method = "update",
@@ -860,11 +860,11 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
         list(
           label = "Hodrick-Prescott filter",
           method = "update",
-          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))), # Indicator and HP decomp. visible
+          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))) , # Indicator and HP decomp. visible
         list(
           label = "Christiano-Fitzgerald filter",
           method = "update",
-          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))), # Indicator and CF decomp. visible
+          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))) , # Indicator and CF decomp. visible
         list(
           label = "Unobserved components",
           method = "update",
