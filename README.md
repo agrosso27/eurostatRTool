@@ -81,6 +81,8 @@ For persistent changes across sessions, call `update_menu_categories()` once:
 ``` r
 update_menu_categories(c("My cat1", "My cat2"))
 ```
+This helper stores your headings in the user configuration so they will be
+used by default in future dashboard runs.
 
 <img src="man/figures/README-dashboard-example.png" width="100%" style="display: block; margin: auto;" />
 
