@@ -3,6 +3,7 @@
 
 The eurostatRToolCustom is an R package developed by Eurostat, offering a robust and flexible environment 
 for the visualisation and analysis of economic indicators. With eurostatRToolCustom, 
+This custom build is named `eurostatRToolCustom` to avoid conflicts with the standard `eurostatRTool` package.
 users can create customisable HTML dashboards that display a wide range of indicators 
 through various visualisation types, including time series plots, bar charts, and maps. 
 The package enables users to customise the overall layout, update underlying data, 
