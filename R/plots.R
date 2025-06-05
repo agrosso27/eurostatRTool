@@ -78,12 +78,14 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
     dplyr::inner_join(., geo_labels, by = dplyr::join_by(DIM == code)) %>%
     dplyr::select(-DIM) %>%
     dplyr::mutate(DIM = label) %>%
-    dplyr::mutate(date = dplyr::case_when(
-      FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), # adjust quarterly for display
-      FREQ == "M" ~ date,
-      FREQ == "A" ~ date,
-      TRUE ~ date
-    ))
+    dplyr::mutate(
+      date = dplyr::case_when(
+        FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), # adjust quarterly for display
+        FREQ == "M" ~ date,
+        FREQ == "A" ~ date,
+        TRUE ~ date
+      )
+    )
 
   # Factorize the DIM column to keep the same order as the data
   filtered_geo_labels <- intersect(geo_labels$label, unique(data_filtered$DIM))
