@@ -20,7 +20,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 `renv` is an R package that helps manage project-specific R dependencies. It ensures that your project's environment remains consistent and reproducible across different machines and environments. This guide outlines the steps to install and set up `renv` in a new R project and install dependencies within the `renv` environment.
 
-Although packages required for the right use of the eurostatRTool package can be installed following the standard way for package installation in Rstudio, we strongly recommend to use the `renv` environment instead.
+Although packages required for the right use of the eurostatRToolCustom package can be installed following the standard way for package installation in Rstudio, we strongly recommend to use the `renv` environment instead.
 
 ## Installing and setting up renv
 
@@ -109,9 +109,9 @@ To install these dependencies in the `renv` environment, follow these steps:
 
     This creates or updates the `renv.lock` file, which contains information about the project's environment.
 
-## Load the eurostatRTool package in the project
+## Load the eurostatRToolCustom package in the project
 
-Now that your project environment is ready, you can load the eurostatRTool package by `library(eurostatRTool)`
+Now that your project environment is ready, you can load the eurostatRToolCustom package by `library(eurostatRToolCustom)`
 and start to use it.
 
 ## Conclusion

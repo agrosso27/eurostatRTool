@@ -14,7 +14,7 @@ data <- function(){
   # If there is a data.csv file available in the user memory, read it. If not,
   # read example data for Eurostatistics or Italy, depending from the
   # selected scenario
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   data_path <- file.path(user_data_path, "data.csv")
   data <- NULL
   if (file.exists(data_path)) {
@@ -22,9 +22,9 @@ data <- function(){
   } else {
     scenario <- read_user_config_param("scenario")
     if (!is.null(scenario) && scenario == "nsi") {
-      data <- eurostatRTool::sample_data_italy
+      data <- eurostatRToolCustom::sample_data_italy
     } else {
-      data <- eurostatRTool::sample_data
+      data <- eurostatRToolCustom::sample_data
     }
   }
 
@@ -47,7 +47,7 @@ geo_labels <- function(){
   # If there is a dim-labels.csv file available in the user memory, read it.
   # If not, read example data for Eurostatistics or Italy, depending from the
   # selected scenario
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   geo_labels_path <- file.path(user_data_path, "dim-labels.csv")
   geo_labels <- NULL
   if (file.exists(geo_labels_path)) {
@@ -55,9 +55,9 @@ geo_labels <- function(){
   } else {
     scenario <- read_user_config_param("scenario")
     if (!is.null(scenario) && scenario == "nsi") {
-      geo_labels <- eurostatRTool::sample_dim_labels_italy
+      geo_labels <- eurostatRToolCustom::sample_dim_labels_italy
     } else {
-      geo_labels <- eurostatRTool::sample_dim_labels
+      geo_labels <- eurostatRToolCustom::sample_dim_labels
     }
   }
 
@@ -135,6 +135,12 @@ bar_chart_colors_palette <- function() {
 # @return A list.
 menu_categories <- function() {
 
+  # If menu categories are defined in the configuration file use them
+  cfg_categories <- read_user_config_param("menu_categories")
+  if (!is.null(cfg_categories)) {
+    return(cfg_categories)
+  }
+
   # Get the menu category, depending on the selected scenario
   scenario <- read_user_config_param("scenario")
   if (!is.null(scenario) && scenario == "nsi") {
@@ -157,7 +163,7 @@ dashboard_structure_data <- function(indicators, dims=NULL) {
   # If there is a dashboard-structure.xlsx file available in the user memory,
   # read it. If not, read example data for Eurostatistics or Italy, depending
   # from the selected scenario
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   dashboard_structure_path <- file.path(user_data_path, "dashboard-structure.xlsx")
   structure_data <- NULL
   if (file.exists(dashboard_structure_path)) {
@@ -165,10 +171,10 @@ dashboard_structure_data <- function(indicators, dims=NULL) {
   } else {
     scenario <- read_user_config_param("scenario")
     if (!is.null(scenario) && scenario == "nsi") {
-      structure_data <- eurostatRTool::sample_dashboard_structure_data_italy
+      structure_data <- eurostatRToolCustom::sample_dashboard_structure_data_italy
     }
     else {
-      structure_data <- eurostatRTool::sample_dashboard_structure_data
+      structure_data <- eurostatRToolCustom::sample_dashboard_structure_data
     }
   }
 
@@ -327,7 +333,7 @@ dashboard_structure_data <- function(indicators, dims=NULL) {
 # @import dplyr xlsx tidyr tools
 forecast_data <- function() {
 
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   forecast_path <- file.path(user_data_path, "forecasts.xlsx")
   # If exist a forecasts.xlsx file in the user device
   if (file.exists(forecast_path)) {
@@ -335,10 +341,10 @@ forecast_data <- function() {
   } else {
     scenario <- read_user_config_param("scenario")
     if (!is.null(scenario) && scenario == "nsi") {
-      path <- system.file("extdata", "forecasts-italy.xlsx", package = "eurostatRTool")
+      path <- system.file("extdata", "forecasts-italy.xlsx", package = "eurostatRToolCustom")
     }
     else {
-      path <- system.file("extdata", "forecasts.xlsx", package = "eurostatRTool")
+      path <- system.file("extdata", "forecasts.xlsx", package = "eurostatRToolCustom")
     }
   }
   # Get all the sheet names in the file
@@ -405,14 +411,14 @@ forecast_data <- function() {
 #' @export
 logo <- function() {
 
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   logo_path <- file.path(user_data_path, "logo.png")
   if (!file.exists(logo_path)) {
     scenario <- read_user_config_param("scenario")
     if (!is.null(scenario) && scenario == "nsi") {
-      logo_path <- system.file("png", "istat.png", package = "eurostatRTool")
+      logo_path <- system.file("png", "istat.png", package = "eurostatRToolCustom")
     } else {
-      logo_path <- system.file("png", "eurostat.png", package = "eurostatRTool")
+      logo_path <- system.file("png", "eurostat.png", package = "eurostatRToolCustom")
     }
   }
 
@@ -463,23 +469,23 @@ css <- function() {
   # The basic css stylesheet depending if storyboard or dropdown menu
   menu <- read_user_config_param("menu")
   if (is.null(menu) || menu != "dropdown") {
-    css <- system.file("css", "style.css", package = "eurostatRTool")
+    css <- system.file("css", "style.css", package = "eurostatRToolCustom")
   }
   else {
-    css <- system.file("css", "dropdown-style.css", package = "eurostatRTool")
+    css <- system.file("css", "dropdown-style.css", package = "eurostatRToolCustom")
   }
 
   # Add the css for the colors. If exists, read it from user memory. If not,
   # read the standard colors
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   colors_path <- file.path(user_data_path, "colors.css")
   if (!file.exists(colors_path)) {
     scenario <- read_user_config_param("scenario")
     if (is.null(scenario) || scenario != "nsi") {
-      colors_path <- system.file("css", "colors.css", package = "eurostatRTool")
+      colors_path <- system.file("css", "colors.css", package = "eurostatRToolCustom")
     }
     else {
-      colors_path <- system.file("css", "colors-italy.css", package = "eurostatRTool")
+      colors_path <- system.file("css", "colors-italy.css", package = "eurostatRToolCustom")
     }
   }
   css <- c(css, colors_path)
@@ -488,13 +494,13 @@ css <- function() {
   logo_position <- read_user_config_param("logo_position")
   if (!is.null(logo_position)) {
     if (logo_position == "right") {
-      logo_path <- system.file("css", "logo-right.css", package = "eurostatRTool")
+      logo_path <- system.file("css", "logo-right.css", package = "eurostatRToolCustom")
       css <- c(css, logo_path)
     }
   } else {
     scenario <- read_user_config_param("scenario")
     if (is.null(scenario) || scenario != "nsi") {
-      logo_path <- system.file("css", "logo-right.css", package = "eurostatRTool")
+      logo_path <- system.file("css", "logo-right.css", package = "eurostatRToolCustom")
       css <- c(css, logo_path)
     }
   }
@@ -570,7 +576,7 @@ edition <- function() {
 social <- function() {
 
   # If exists a social.html in the user memory, read it
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   social_path <- file.path(user_data_path, "social.html")
   if (file.exists(social_path)) {
     # Transform the absolute path into relative one, for passing it to the rmd
@@ -598,7 +604,7 @@ social <- function() {
 footer <- function() {
 
   # If exists a footer.html in the user memory, read it
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   footer_path <- file.path(user_data_path, "footer.html")
   if (file.exists(footer_path)) {
     # Transform the absolute path into relative one, for passing it to the rmd
@@ -787,7 +793,7 @@ meta_description <- function() {
 #
 # @return Assign the states SpatialPolygonsDataFrame to a package global variable.
 states <- function() {
-  states <- eurostatRTool::states
+  states <- eurostatRToolCustom::states
   # Assign the states to a package global variable
   assign("states", states, envir = .pkgglobalenv)
 }
@@ -797,7 +803,7 @@ states <- function() {
 #
 # @return Assign the gisco_countries SpatialPolygonsDataFrame to a package global variable.
 gisco_countries <- function() {
-  gisco_countries <- eurostatRTool::gisco_countries
+  gisco_countries <- eurostatRToolCustom::gisco_countries
   # Assign the states to a package global variable
   assign("gisco_countries", gisco_countries, envir = .pkgglobalenv)
 }

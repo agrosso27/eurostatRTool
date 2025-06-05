@@ -23,7 +23,7 @@ generate_pdf_reports <- function(output_path, data, geo_labels,
 
       # Generate the dashboard
       rmarkdown::render(
-        input = file.path(system.file(package = "eurostatRTool"), "rmd", "pdf_report.Rmd"),
+        input = file.path(system.file(package = "eurostatRToolCustom"), "rmd", "pdf_report.Rmd"),
         output_file = file.path(output_path, "visualisation_files", "reports",
                                 paste0(indicator_subpage_data$title[1], "_",
                                        ii, ".pdf")),
@@ -38,7 +38,7 @@ generate_pdf_reports <- function(output_path, data, geo_labels,
   }
 
   # Delete all the temporary png files
-  rmd_folder <- file.path(system.file(package = "eurostatRTool"), "rmd")
+  rmd_folder <- file.path(system.file(package = "eurostatRToolCustom"), "rmd")
   unlink(file.path(rmd_folder, "*.png"))
 
 }
