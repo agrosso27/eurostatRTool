@@ -73,6 +73,8 @@ eurostatRToolCustom::generate_dashboard(
   menu_categories_override = c("My cat1", "My cat2")
 )
 ```
+This temporary override does not update your configuration file, so saved
+categories remain intact for future runs.
 
 For persistent changes across sessions, call `update_menu_categories()` once:
 
