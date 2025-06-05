@@ -727,7 +727,7 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
   # In fact, each choice defines which of the trend and cycle lines will be visible.
   # The indicator itself is always visible.
 
-  updatemenus <- list(
+  updatemenus <- safe_list(
     list(
       y = 1.2,
       x = 0.2,
@@ -837,7 +837,7 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
   # In fact, each choice defines which of the trend and cycle lines will be visible.
   # The indicator itself is always visible.
 
-  small_updatemenus <- list(
+  small_updatemenus <- safe_list(
     list(
       y = -0.25,
       x = 0.5,

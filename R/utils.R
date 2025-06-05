@@ -99,3 +99,8 @@ relative_path <- function(absolute_path, base_path) {
 
   return(relative_path)
 }
+
+# Create a list while safely dropping NULL elements
+safe_list <- function(...) {
+  Filter(Negate(is.null), list(...))
+}
