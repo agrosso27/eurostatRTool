@@ -29,7 +29,7 @@ update_forecasts <- function(file_path) {
   }
 
   # Get the user project data directory
-  user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+  user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
   if (!dir.exists(user_data_path)) {
     dir.create(user_data_path, recursive=TRUE)
   }

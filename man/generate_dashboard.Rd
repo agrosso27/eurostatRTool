@@ -4,12 +4,16 @@
 \alias{generate_dashboard}
 \title{Generate the dashboard}
 \usage{
-generate_dashboard(output_path, pdf_reports = FALSE)
+generate_dashboard(output_path, pdf_reports = FALSE, menu_categories_override = NULL)
 }
 \arguments{
 \item{output_path}{The path where to save the html.}
 
 \item{pdf_reports}{Enable generation of pdf reports.}
+
+\item{menu_categories_override}{Optional vector of menu categories. If
+\code{NULL}, categories are read from the configuration or selected
+scenario.}
 }
 \value{
 A html.

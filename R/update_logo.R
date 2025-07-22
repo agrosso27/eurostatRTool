@@ -14,7 +14,7 @@ update_logo <- function(file_path = NULL, position = NULL, link = NULL) {
     logo <- magick::image_read(file_path)
     logo <- magick::image_scale(logo, "x48")
     # Write the image as logo.png in the user memory
-    user_data_path <- tools::R_user_dir("eurostatRTool", which = "data")
+    user_data_path <- tools::R_user_dir("eurostatRToolCustom", which = "data")
     if (!dir.exists(user_data_path)) {
       dir.create(user_data_path, recursive=TRUE)
     }

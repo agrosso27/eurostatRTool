@@ -1,13 +1,13 @@
 ---
 output: 
   flexdashboard::flex_dashboard:
-    css: !expr eurostatRTool::css()
+    css: !expr eurostatRToolCustom::css()
     orientation: rows
     vertical_layout: fill
-    logo: !expr eurostatRTool::logo()
+    logo: !expr eurostatRToolCustom::logo()
     includes:
-      in_header: !expr eurostatRTool::social()
-      after_body: !expr eurostatRTool::footer()
+      in_header: !expr eurostatRToolCustom::social()
+      after_body: !expr eurostatRToolCustom::footer()
     self_contained: false
     mathjax: null
     encoding: UTF-8
@@ -53,6 +53,7 @@ metathis::meta() %>%
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+menu_categories_vec <- params$menu_categories
 ```
 
 Overview {#overview}
@@ -111,7 +112,7 @@ options(knitr.duplicate.label = 'allow')
 # Create temporary environment which we use for knitting menu_subpages.RMD 
 menu_subpage_env <- new.env()
 
-menu_cat <- intersect(unique(dashboard_structure_data$menu_position), 1:length(menu_categories))
+menu_cat <- intersect(unique(dashboard_structure_data$menu_position), 1:length(menu_categories_vec))
 
 for (i in menu_cat) {
   # Filter structure data for menu category
@@ -125,7 +126,7 @@ for (i in menu_cat) {
   assign("colors_palette", colors_palette, menu_subpage_env)
   assign("bar_chart_colors_palette", bar_chart_colors_palette, menu_subpage_env)
   assign("menu_subpage_data", menu_subpage_data, menu_subpage_env)
-  assign("menu_category", menu_categories[i], menu_subpage_env)
+  assign("menu_category", menu_categories_vec[i], menu_subpage_env)
   assign("menu_category_i", i, menu_subpage_env)
   assign("pdf_reports", pdf_reports, menu_subpage_env)
   

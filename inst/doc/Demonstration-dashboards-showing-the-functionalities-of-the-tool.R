@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 options(rmarkdown.html_vignette.check_title = FALSE)
 
 ## ----setup--------------------------------------------------------------------
-library(eurostatRTool)
+library(eurostatRToolCustom)
 
 ## ----echo=FALSE, fig.align='center', fig.cap='', out.width='100%'-------------
 knitr::include_graphics('img/eurostatistics-dashboard-example.png')

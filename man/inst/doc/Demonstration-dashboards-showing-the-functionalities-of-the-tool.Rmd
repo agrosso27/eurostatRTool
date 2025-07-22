@@ -17,7 +17,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup}
-library(eurostatRTool)
+library(eurostatRToolCustom)
 ```
 
 Two different demonstration dashboards are available, containing different structure, indicators, visualisation elements and interpretations, but both built from public data published in December 2023. 
@@ -53,7 +53,7 @@ knitr::include_graphics('img/italy-dashboard-example.png')
 
 Apart from the differences in the general layout and the different data and visualisation elements displayed for demonstration purposes, we can notice that both scenarios (Eurostatistics and NSI scenarios) differ in their main structure, having different topics in their respective main menus.
 
-While all other options -see the vignette `General-workflow-for-building-and-maintaining-your-dashboard` for a full description of the available functionalities- are customisable: colours, titles, headers, footer, logo, data, indicators, visualisation modes, etc., the topics structuring the main menu in the two scenarios are not customisable. 
+While all other options -see the vignette `General-workflow-for-building-and-maintaining-your-dashboard` for a full description of the available functionalities- are customisable: colours, titles, headers, footer, logo, data, indicators, visualisation modes, etc., the topics structuring the main menu can also be adjusted. Use `update_menu_categories()` to save your preferred categories or pass them on the fly via the `menu_categories_override` argument of `generate_dashboard()`. 
 
 To be able to build and maintain a customised dashboard for your own organisation,
 please follow the guidance provided in the vignette `General-workflow-for-building-and-maintaining-your-dashboard`.

@@ -78,11 +78,14 @@ timeline_chart <- function(data, geo_labels, colors_palette, indicator, chart_ti
     dplyr::inner_join(., geo_labels, by = dplyr::join_by(DIM == code)) %>%
     dplyr::select(-DIM) %>%
     dplyr::mutate(DIM = label) %>%
-    dplyr::mutate(date = dplyr::case_when(
-      FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), # adjust quarterly for display
-      FREQ == "M" ~ date,
-      FREQ == "A" ~ date,
-      TRUE ~ date
+    dplyr::mutate(
+      date = dplyr::case_when(
+        FREQ == "Q" ~ lubridate::add_with_rollback(date, months(-2), roll_to_first = TRUE), # adjust quarterly for display
+        FREQ == "M" ~ date,
+        FREQ == "A" ~ date,
+        TRUE ~ date
+      )
+    )
 
   # Factorize the DIM column to keep the same order as the data
   filtered_geo_labels <- intersect(geo_labels$label, unique(data_filtered$DIM))
@@ -724,7 +727,7 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
   # In fact, each choice defines which of the trend and cycle lines will be visible.
   # The indicator itself is always visible.
 
-  updatemenus <- list(
+  updatemenus <- safe_list(
     list(
       y = 1.2,
       x = 0.2,
@@ -741,11 +744,11 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
         list(
           label = "Hodrick-Prescott filter",
           method = "update",
-          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))), # Indicator and HP decomp. visible
+          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))) , # Indicator and HP decomp. visible
         list(
           label = "Christiano-Fitzgerald filter",
           method = "update",
-          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))), # Indicator and CF decomp. visible
+          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))) , # Indicator and CF decomp. visible
         list(
           label = "Unobserved components",
           method = "update",
@@ -834,7 +837,7 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
   # In fact, each choice defines which of the trend and cycle lines will be visible.
   # The indicator itself is always visible.
 
-  small_updatemenus <- list(
+  small_updatemenus <- safe_list(
     list(
       y = -0.25,
       x = 0.5,
@@ -857,11 +860,11 @@ double_scale_chart <- function(data, geo_labels, colors_palette, indicator, geo,
         list(
           label = "Hodrick-Prescott filter",
           method = "update",
-          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))), # Indicator and HP decomp. visible
+          args = list(list(visible = c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)))) , # Indicator and HP decomp. visible
         list(
           label = "Christiano-Fitzgerald filter",
           method = "update",
-          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))), # Indicator and CF decomp. visible
+          args = list(list(visible = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE)))) , # Indicator and CF decomp. visible
         list(
           label = "Unobserved components",
           method = "update",
